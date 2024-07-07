@@ -214,35 +214,22 @@
 </section>
 
 
-
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Contributions -->
+    <!-- Combined Contributions and Model Workflow -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Our Contributions</h2>
-        <div class="content has-text-justified">
-          <ul>
-            <li>Triangular Probability Similarity (TPS) for minimizing artifacts and distortions.</li>
-            <li>Semantic Noise Contrastive Estimation (SeNCE) for optimizing the amounts of generated rain.</li>
-            <li>Realistic rain generation benefits deraining and object detection in real rainy conditions.</li>
-          </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
         <h2 class="title is-3">Model Workflow</h2>
         <div class="content has-text-justified">
           <p>
-            TPS aligns the generated rainy image with the clear and rainy image in the discriminator manifold to suppress artifacts and distortions, 
-            while SeNCE adjusts the pushing force of the negative patches based on their feature similarities with the anchor patch and refines that force 
-            with the semantic similarity between clear and rainy. 
+            Our model, TPSeNCE, leverages two key innovations: 
+          </p>
+          <ul>
+            <li><strong>Triangular Probability Similarity (TPS)</strong>: Minimizes artifacts and distortions by aligning generated rainy images with clear and rainy images in the discriminator manifold.</li>
+            <li><strong>Semantic Noise Contrastive Estimation (SeNCE)</strong>: Optimizes the amounts of generated rain by adjusting the pushing force of negative patches based on feature similarities with the anchor patch and refining that force with the semantic similarity between clear and rainy images.</li>
+          </ul>
+          <p>
+            These contributions enable realistic rain generation, benefiting deraining and object detection in real rainy conditions.
           </p>
           <img src="./static/images/Overview/Titlepage_10_31-1.png"
                class="publication-image"
@@ -250,6 +237,7 @@
         </div>
       </div>
     </div>
+  </div>
 </section>
 
 
