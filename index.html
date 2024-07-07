@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="TPSeNCE: Towards Artifact-Free Realistic Rain Generation for Deraining and Object Detection in Rain">
+  <meta name="keywords" content="InstanceWarp, Domain Adaptation, Bad Weather">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TPSeNCE: Towards Artifact-Free Realistic Rain Generation for Deraining and Object Detection in Rain</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.jpg">
+  <link rel="stylesheet" href="./static/css/video-grid.css">
+  <link rel="stylesheet" href="./static/css/image.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+
+      <a class="navbar-item" href="https://shenzheng2000.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <span class="navbar-item">
+        TPSeNCE: Towards Artifact-Free Realistic Rain Generation for Deraining and Object Detection in Rain
+      </span>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">TPSeNCE: Towards Artifact-Free Realistic Rain Generation for Deraining and Object Detection in Rain</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://shenzheng2000.github.io/">Shen Zheng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://louey233.github.io/">Changjie Lu</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.cmu.edu/~srinivas/">Srinivasa Narasimhan</a><sup>1</sup></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup> CMU,</span>
+              <span class="author-block"><sup>2</sup> UIUC</span>
+            </div>
+            <div class="is-size-5 publication-authors" style="margin-top: 1em;">
+              <strong>Accepted to WACV 2024</strong>
+            </div>            
+
+        <div class="column has-text-centered">
+          <div class="publication-links">
+
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/2311.00660"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                </span>
+                <span>arXiv</span>
+              </a>
+            </span>
+
+            <span class="link-block">
+              <a href="https://openaccess.thecvf.com/content/WACV2024/papers/Zheng_TPSeNCE_Towards_Artifact-Free_Realistic_Rain_Generation_for_Deraining_and_Object_WACV_2024_paper.pdf"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fas fa-file-alt"></i>
+                </span>
+                <span>Paper</span>
+              </a>
+            </span>
+
+            <span class="link-block">
+              <a href="https://github.com/ShenZheng2000/TPSeNCE"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>
+
+          </div>
+        </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Backgrounds: Impact of Rain on Object Detection</h2>
+        <div class="content has-text-justified">
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Header/2a1e1100-9dd1e103.jpg"
+                     class="publication-image"
+                     alt="InstanceWarp for Domain Adaptation."/>
+                <figcaption>Raindrops</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Header/7e50f0e4-0ae1eb2e.jpg"
+                     class="publication-image"
+                     alt="Sample Image 2"/>
+                <figcaption>Rain Mist</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Header/8a5ee740-e1fbb2e7.jpg"
+                     class="publication-image"
+                     alt="Sample Image 3"/>
+                <figcaption>Reflections</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Challenges: Current I2I Methods Fail to Generate High-Quality Rainy Images for Finetuning</h2>
+        <div class="content has-text-justified">
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/BadCase/b1ceb32e-a106591d.jpg"
+                     class="publication-image"
+                     alt="InstanceWarp for Domain Adaptation."/>
+                <figcaption></figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/BadCase/b1cebfb7-284f5117.jpg"
+                     class="publication-image"
+                     alt="Sample Image 2"/>
+                <figcaption></figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/BadCase/b1d10d08-c35503b8.jpg"
+                     class="publication-image"
+                     alt="Sample Image 3"/>
+                <figcaption></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Contributions -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Our Contributions</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li>Triangular Probability Similarity (TPS) for minimizing artifacts and distortions.</li>
+            <li>Semantic Noise Contrastive Estimation (SeNCE) for optimizing the amounts of generated rain.</li>
+            <li>Realistic rain generation benefits deraining and object detection in real rainy conditions.</li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Model Workflow</h2>
+        <div class="content has-text-justified">
+          <p>
+            TPS aligns the generated rainy image with the clear and rainy image in the discriminator manifold to suppress artifacts and distortions, 
+            while SeNCE adjusts the pushing force of the negative patches based on their feature similarities with the anchor patch and refines that force 
+            with the semantic similarity between clear and rainy. 
+          </p>
+          <img src="./static/images/Overview/Titlepage_10_31-1.png"
+               class="publication-image"
+               alt="InstanceWarp for Domain Adaptation."/>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Model Architecture</h2>
+        <div class="content has-text-justified">
+          <p>
+            TPSeNCE uses a generator to translate clear images to rainy ones, 
+            a discriminator with TPS and GAN losses, and an encoder that embeds patches from both clear and generated images.
+             MLPs process these patches contrastively to output SeNCE loss, guided by semantic segmentation maps.
+          </p>
+          <img src="./static/images/Overview/Workflow_10_31-1.png"
+               class="publication-image"
+               alt="InstanceWarp for Domain Adaptation."/>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Semantic Noise Contrastive Estimation (SeNCE)</h2>
+        <div class="content has-text-justified">
+          <p>
+            SeNCE outperforms PatchNCE and MoNCE in optimizing the amount of rain to produce realistic rainy images. 
+            The length of the arrow here represents the magnitude of the NCE losses.
+          </p>
+          <img src="./static/images/SeNCE/fig_explained-1.png"
+               class="publication-image"
+               alt="InstanceWarp for Domain Adaptation."/>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 custom-red">Visual Results (Clear2Rainy Video)</h2>
+        <div class="content has-text-justified">
+          <div class="video-container">
+            <video width="100%" height="auto" controls>
+              <source src="./static/videos/TPSeNCE_Rain_Generation.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 custom-red">Visual Results (Clear2Rainy)</h2>
+        <div class="content has-text-justified">
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Rainmake_Compare_BDD/Clear/b1c66a42-6f7d68ca.jpg"
+                     class="publication-image"
+                     alt="InstanceWarp for Domain Adaptation."/>
+                <figcaption>Clear</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Rainmake_Compare_BDD/CUT/b1c66a42-6f7d68ca.jpg"
+                     class="publication-image"
+                     alt="Sample Image 2"/>
+                <figcaption>CUT</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Rainmake_Compare_BDD/CUT_TPS_SeNCE/b1c66a42-6f7d68ca.jpg"
+                     class="publication-image"
+                     alt="Sample Image 3"/>
+                <figcaption>TPSeNCE (Ours)</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 custom-red">Visual Results (Rainy2Clear)</h2>
+        <div class="content has-text-justified">
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Derain/Rainy/76dcb9c0-b9268707.jpg"
+                     class="publication-image"
+                     alt="InstanceWarp for Domain Adaptation."/>
+                <figcaption>Rainy</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Derain/CUT/76dcb9c0-b9268707.jpg"
+                     class="publication-image"
+                     alt="Sample Image 2"/>
+                <figcaption>CUT</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Derain/CUT_TPS_SeNCE/76dcb9c0-b9268707.jpg"
+                     class="publication-image"
+                     alt="Sample Image 3"/>
+                <figcaption>TPSeNCE (Ours)</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 custom-red">Visual Results (Clear2Snowy)</h2>
+        <div class="content has-text-justified">
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Snowy/Clear/boreas-2021-03-30-14-23.mkv_frame_5265.jpg"
+                     class="publication-image"
+                     alt="InstanceWarp for Domain Adaptation."/>
+                <figcaption>Clear</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Snowy/CUT/boreas-2021-03-30-14-23.mkv_frame_5265.jpg"
+                     class="publication-image"
+                     alt="Sample Image 2"/>
+                <figcaption>CUT</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Snowy/Ours/boreas-2021-03-30-14-23.mkv_frame_5265.jpg"
+                     class="publication-image"
+                     alt="Sample Image 3"/>
+                <figcaption>TPSeNCE (Ours)</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 custom-red">Visual Results (Day2Night)</h2>
+        <div class="content has-text-justified">
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Night/Clear/b1d0091f-f2c2d2ae.jpg"
+                     class="publication-image"
+                     alt="InstanceWarp for Domain Adaptation."/>
+                <figcaption>Day</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Night/CUT/b1d0091f-f2c2d2ae.jpg"
+                     class="publication-image"
+                     alt="Sample Image 2"/>
+                <figcaption>CUT</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Night/Ours/b1d0091f-f2c2d2ae.jpg"
+                     class="publication-image"
+                     alt="Sample Image 3"/>
+                <figcaption>TPSeNCE (Ours)</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 custom-red">Visual Results (Object Detection in Rain)</h2>
+        <div class="content has-text-justified">
+          <div class="image-gallery columns is-mobile">
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Detect/Rainy/2e6ab366-0b8b11e0.jpg"
+                     class="publication-image"
+                     alt="InstanceWarp for Domain Adaptation."/>
+                <figcaption>Pretrained</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Detect/CUT/2e6ab366-0b8b11e0.jpg"
+                     class="publication-image"
+                     alt="Sample Image 2"/>
+                <figcaption>Finetuned on CUT</figcaption>
+              </figure>
+            </div>
+            <div class="column is-one-third">
+              <figure>
+                <img src="./static/images/Experiments/Detect/CUT_TPS_SeNCE/2e6ab366-0b8b11e0.jpg"
+                     class="publication-image"
+                     alt="Sample Image 3"/>
+                <figcaption>Finetuned on TPSeNCE (Ours)</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Source Code from <a href="https://nerfies.github.io">Nerfies</a>, <a href="https://humanoid-next-token-prediction.github.io/">Humanoid Next Token Prediction</a>, and 
+            <a href="https://instancewarp.github.io/">InstanceWarp</a>.   
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

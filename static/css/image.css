@@ -1,0 +1,26 @@
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 5px; /* Adjust this value to reduce/increase the space between images */
+}
+
+.image-gallery figure {
+  margin: 0;
+}
+
+.image-gallery img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-gallery figcaption {
+  text-align: center;
+  margin-top: 5px;
+  font-style: normal !important;
+}
+
+.columns.is-mobile .column {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
